@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class BasketballSeasonTracker {
+    static Scanner keyboard = new Scanner(System.in);
+    char math;
+
+    public static void main(String[] args) {
+
+        // This 2 dimensional array holds scores for 5 games by quarter
+        int[][] teamScores = new int[5][4];
+        double sum = 0, average = 0;
+
+        // Initialize the array to random scores
+        for (int game = 0; game < 5; game++) {
+            for (int qtr = 0; qtr < 4; qtr++) {
+                // We will assign a random number between 5 and 30 for each quarter)
+                teamScores[game][qtr] = (int)(Math.random()*25) + 5;
+            }
+        }
+
+        // View the scores for all games/quarters
+        for (int game = 0; game < 5; game++) {
+            System.out.println("\nGame:" + (game+1));
+            for (int qtr = 0; qtr < 4; qtr++) {
+                System.out.print("Q" + (qtr+1) + ":" + teamScores[game][qtr] + " ");
+            }
+        }
+        while (true){
+        System.out.print("\n#### MENU ####\n");
+		System.out.print("1: View Q1 average score\n");
+		System.out.print("2: View Q2 average score\n");
+		System.out.print("3: View Q3 average score\n");
+		System.out.print("4: View Q4 average score\n");
+		System.out.print("5: View all score information for a game.\n");
+		System.out.print("6: Exit.\n");
+		System.out.print("What would you like to do? (1-6):\n");
+		Scanner input = new Scanner(System.in);
+		int Selection = input.nextInt();
+		if(Selection == 1) {
+			for (int game = 0; game < 5; game++)
+				sum=sum+teamScores[game][0];
+			average=sum/5;
+			System.out.print("On average, the team scored " + average + " points in the first quarter.");
+		}
+		else if(Selection == 2) {
+			for (int game = 0; game < 5; game++)
+				sum=sum+teamScores[game][1];
+			average=sum/5;
+			System.out.print("On average, the team scored " + average + " points in the second quarter.");
+		}
+		else if(Selection == 3) {
+			for (int game = 0; game < 5; game++)
+				sum=sum+teamScores[game][2];
+			average=sum/5;
+			System.out.print("On average, the team scored " + average + " points in the third quarter.");
+		}
+		else if(Selection == 4) {
+			for (int game = 0; game < 5; game++)
+				sum=sum+teamScores[game][3];
+			average=sum/5;
+			System.out.print("On average, the team scored " + average + " points in the fourth quarter.");
+		}
+		else if(Selection == 5) {
+			System.out.print("Which game scores would like to view (1-5)?\n");
+			int number = input.nextInt();
+			for (int game = number; game < number+1; game++) {
+	            System.out.println("\nGame: " + (number));
+	            for (int qtr = 0; qtr < 4; qtr++) {
+	                System.out.print("Q" + (qtr+1) + ":" + teamScores[game-1][qtr] + " ");
+	            }
+	        }
+		}
+		else if (Selection == 6) {
+			System.out.print("Exiting..."); 
+			input.close();
+			System.exit(0);
+		} 
+        }
+    }
+}
